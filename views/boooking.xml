@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+
+        <record id="booking_tree" model="ir.ui.view">
+            <field name="name">hotel.booking.tree</field>
+            <field name="model">hotel.booking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="check_in"/>
+                    <field name="checkout"/>
+                    <field name="total_days"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="booking_form" model="ir.ui.view">
+            <field name="name">hotel.booking.form</field>
+            <field name="model">hotel.booking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="number"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+
+                                <field name="customer_name"/>
+
+                                <field name="guest_room"/>
+
+                            </group>
+                            <group>
+                                <field name="check_in"/>
+                                <field name="checkout"/>
+                                <field name="total_days"/>
+
+                            </group>
+
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="booking_action" model="ir.actions.act_window">
+            <field name="name">Hotel Booking</field>
+            <field name="res_model">hotel.booking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                name="Booking"
+                id="Booking_menu"
+                sequence="10"
+                action="booking_action"
+                parent="Hotel_main_menu"
+        />
+
+
+    </data>
+</odoo>

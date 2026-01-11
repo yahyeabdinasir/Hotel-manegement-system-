@@ -20,6 +20,7 @@
          'views/menu_view.xml',
         'views/views.xml',
         'views/rooms.xml',
+        'views/boooking.xml',
     ],
     # only loaded in demonstration mode
 

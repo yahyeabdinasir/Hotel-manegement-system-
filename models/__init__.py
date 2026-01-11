@@ -2,3 +2,6 @@
 
 from . import costomer
 from . import rooms
+
+from . import booking
+

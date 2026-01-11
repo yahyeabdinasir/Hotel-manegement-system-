@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+
+        <record id="room_tree" model="ir.ui.view">
+            <field name="name">room.tree</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="name"/>
+                    <field name="room_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="room_form" model="ir.ui.view">
+            <field name="name">room.form</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <field name="room_type"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="room_action" model="ir.actions.act_window">
+            <field name="name">Hotel Rooms</field>
+             <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hotel.room</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Rooms"
+            id="rooms_menu"
+            sequence="2"
+            action="room_action"
+            parent="Hotel_main_menu"
+            />
+
+
+
+
+    </data>
+</odoo>

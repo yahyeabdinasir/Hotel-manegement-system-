@@ -17,7 +17,7 @@
         'security/ir.model.access.csv',
         'views/menu_view.xml',
         'views/views.xml',
-
+        'views/rooms.xml',
     ],
     # only loaded in demonstration mode
 

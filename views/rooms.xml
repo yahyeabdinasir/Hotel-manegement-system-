@@ -17,12 +17,16 @@
             <field name="model">hotel.room</field>
             <field name="arch" type="xml">
                 <form>
-                    <div class="oe_title">
+                   <sheet>
+                       <div class="oe_title">
                         <h1>
                             <field name="name"/>
                         </h1>
-                    </div>
-                    <field name="room_type"/>
+                        </div>
+                       <group>
+                           <field name="room_type"/>
+                       </group>
+                   </sheet>
                 </form>
             </field>
         </record>

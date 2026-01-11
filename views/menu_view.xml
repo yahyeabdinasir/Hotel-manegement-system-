@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <menuitem name="HMS"
+              id="Hotel_main_menu"
+
+    />
+
+    <menuitem name="Front Desk "
+              id="hotel_front_desk"
+              parent="Hotel_main_menu"
+              sequence="0"
+    />
+</odoo>

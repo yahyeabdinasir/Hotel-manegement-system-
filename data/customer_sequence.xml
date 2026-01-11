@@ -10,4 +10,15 @@
 
 
     </record>
+
+     <record id="room_sequence" model="ir.sequence">
+        <field name="name">Room sequence</field>
+        <field name="code">hotel.room</field>
+        <field name="padding">4</field>
+        <field name="prefix">QOLKA</field>
+        <field name="company_id" eval="False"/>
+
+
+    </record>
+
 </odoo>

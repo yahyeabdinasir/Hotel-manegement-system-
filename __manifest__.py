@@ -3,6 +3,7 @@
     'name': "Hotel manegment system",
 
     'description': "HMS made easy",
+    'sequence': 103,
 
     'author': "Merit",
     'category': 'HMS',
@@ -15,7 +16,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/menu_view.xml',
+        'data/customer_sequence.xml',
+         # 'views/menu_view.xml',
         'views/views.xml',
 
     ],

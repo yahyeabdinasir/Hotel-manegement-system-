@@ -1,46 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data>
 
-        <record id="tree_one" model="ir.ui.view">
-            <field name="name">hotel.customer.tree</field>
-            <field name="model">hotel.customer</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="code"/>
-                    <field name="active"/>
-                </tree>
-            </field>
-        </record>
+    <record id="tree_one" model="ir.ui.view">
+        <field name="name">hotel.customer.tree</field>
+        <field name="model">hotel.customer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="number"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
 
-        <record id="form_one" model="ir.ui.view">
-            <field name="name">hotel.customer.form</field>
-            <field name="model">hotel.customer</field>
-            <field name="arch" type="xml">
-                <form>
-                    <field name="name"/>
-                    <field name="code"/>
-                    <field name="active"/>
-                </form>
-            </field>
-        </record>
+    <record id="form_one_changing" model="ir.ui.view">
+        <field name="name">hotel.customer.form</field>
+        <field name="model">hotel.customer</field>
+        <field name="arch" type="xml">
+            <form>
 
-        <record id="customer_action_window" model="ir.actions.act_window">
-            <field name="name">Customer Actions</field>
-            <field name="res_model">hotel.customer</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
 
-        <menuitem
+
+                    <group>
+
+                        <group>
+                            <field name="number"/>
+                            <field name="Full_name"/>
+
+                            <field name="gender"/>
+
+                            <field name="guest_type"/>
+                            <field name="nationality"/>
+
+                        </group>
+
+                        <group>
+
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="is_guest"/>
+                            <field name="country_id"/>
+
+                        </group>
+                    </group>
+
+
+                </sheet>
+
+
+            </form>
+        </field>
+    </record>
+
+    <record id="customer_action_window" model="ir.actions.act_window">
+        <field name="name">Customer Actions</field>
+        <field name="res_model">hotel.customer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
             name="Customer menu"
             id="customer_menu"
             sequence="0"
             action="customer_action_window"
             parent="hotel_front_desk"
-            />
+    />
 
 
-
-
-    </data>
 </odoo>

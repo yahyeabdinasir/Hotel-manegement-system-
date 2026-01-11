@@ -1,24 +1,50 @@
-# -*- coding: utf-8 -*-
+
 
 from odoo import models, fields, api
 
 
-class om_hutel(models.Model):
+class HotelCustomer(models.Model):
     _name = 'hotel.customer'
-    _description = 'htel property '
+    _description = 'hotel property'
 
-    name = fields.Char(string="name")
-    code = fields.Char(string="code ")
-    active=   fields.Boolean(default=False, string="active")
-    # company_id: Many2one('res.company')
-    # currency_id: Many2one('res.currency')
-    # address_id: Many2one('res.partner')
-    # floor_ids: One2many('hotel.floor', 'property_id')
-    # room_ids: One2many('hotel.room', 'property_id')
+    number=fields.Char(string="number")
+
+    Full_name = fields.Char(string="name")
+    is_guest = fields.Boolean(string="is guest")
+    title = fields.Selection([
+        ('mr', 'Mr'),
+        ('mrs', 'Mrs'),
+        ('ms', 'Ms'),
+        ('dr', 'Dr'),
+    ])
+    image = fields.Image(string="image")
+
+    guest_type = fields.Selection([
+        ('individual', 'Individual'),
+        ('corporate', 'Corporate'),
+        ('agent', 'Travel Agent'),
+    ])
+
+    gender = fields.Selection([
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    ])
+    preferred_language = fields.Many2one('res.lang')
+    nationality = fields.Char(string="nationality ")
+
+    email = fields.Char(string="email")
+    phone = fields.Char(string="phone")
+    country_id = fields.Many2one('res.country', string="Country ")
+
+    @api.model
+    def create(self, vals_list):
+        vals_list["number"] = self.env["ir.sequence"].next_by_code('hotel.customer')
+        return super(HotelCustomer, self).create(vals_list)
 
 
-    # @api.depends('value')
-    # def _value_pc(self):
-    #     for record in self:
-    #         record.value2 = float(record.value) / 100
-
+    def write(self, vals):
+        for rec in self:
+            if  not rec.guest_number:
+                vals["number"] = self.env["ir.sequence"].next_by_code('hotel.customer')
+        return super(HotelCustomer, self).write(vars())

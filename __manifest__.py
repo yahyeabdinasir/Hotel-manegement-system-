@@ -19,7 +19,7 @@
         'data/customer_sequence.xml',
          # 'views/menu_view.xml',
         'views/views.xml',
-
+        'views/rooms.xml',
     ],
     # only loaded in demonstration mode
 

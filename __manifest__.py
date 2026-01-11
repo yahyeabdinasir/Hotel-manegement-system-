@@ -11,13 +11,13 @@
     'application': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'data/customer_sequence.xml',
-         # 'views/menu_view.xml',
+         'views/menu_view.xml',
         'views/views.xml',
         'views/rooms.xml',
     ],

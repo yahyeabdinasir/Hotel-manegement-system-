@@ -6,6 +6,8 @@ from odoo import models, fields, api
 class HotelCustomer(models.Model):
     _name = 'hotel.customer'
     _description = 'hotel property'
+    _inherit = ['mail.thread' , 'mail.activity.mixin']
+
 
     number=fields.Char(string="number")
 

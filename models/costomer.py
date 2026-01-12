@@ -1,17 +1,16 @@
-
-
 from odoo import models, fields, api
 
 
 class HotelCustomer(models.Model):
     _name = 'hotel.customer'
     _description = 'hotel property'
-    _inherit = ['mail.thread' , 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = "Full_name"
 
-
-    number=fields.Char(string="number")
+    number = fields.Char(string="number")
 
     Full_name = fields.Char(string="name")
+    display_name = fields.Char(string="display name", compute="_display_name")
     is_guest = fields.Boolean(string="is guest")
     title = fields.Selection([
         ('mr', 'Mr'),
@@ -44,9 +43,12 @@ class HotelCustomer(models.Model):
         vals_list["number"] = self.env["ir.sequence"].next_by_code('hotel.customer')
         return super(HotelCustomer, self).create(vals_list)
 
-
     def write(self, vals):
         for rec in self:
-            if  not rec.guest_number:
+            if not rec.guest_number:
                 vals["number"] = self.env["ir.sequence"].next_by_code('hotel.customer')
-        return super(HotelCustomer, self).write(vars())
+        return super(HotelCustomer, self).write(vals)
+
+    def _display_name(self):
+        for rec in self:
+            rec.display_name = f" {rec.number} -  {rec.Full_name}"

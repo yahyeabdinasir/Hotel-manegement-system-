@@ -3,7 +3,7 @@
     'name': "Hotel manegment system",
 
     'description': "HMS made easy",
-    'sequence': 103,
+    'sequence': 120,
 
     'author': "Merit",
     'category': 'HMS',
@@ -17,6 +17,8 @@
     'data': [
         'security/ir.model.access.csv',
         'data/customer_sequence.xml',
+        'data/booking_sequence.xml',
+
          'views/menu_view.xml',
         'views/views.xml',
         'views/rooms.xml',

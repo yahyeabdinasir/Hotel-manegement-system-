@@ -21,6 +21,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="action_booking" string="Book The Customer" type="object" class="oe_highlight" />
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

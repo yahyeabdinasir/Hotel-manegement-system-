@@ -50,11 +50,14 @@ class HotelCustomer(models.Model):
         self.env['res.partner'].create({
             'name':record.name
         })
-        self.env['hotel.booking'].create({
-            'customer_id':record.id,
-            'state':'in_progress'
-        })
         return record
+
+    def action_booking(self):
+        for rec in self:
+            self.env['hotel.booking'].create({
+               'customer_id':self.id,
+               'state':'in_progress'
+            })
 
     def write(self, vals):
         for rec in self:

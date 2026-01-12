@@ -8,7 +8,7 @@
                 <tree>
                     <field name="number"/>
                     <field name="check_in"/>
-                    <field name="customer_name"/>
+                    <field name="customer_id"/>
                     <field name="checkout"/>
                     <field name="total_days"/>
                     <field name="activity_ids" widget="list_activity"/>
@@ -21,6 +21,9 @@
             <field name="model">hotel.booking</field>
             <field name="arch" type="xml">
                 <form>
+                      <header>
+                    <field name="state" widget="statusbar"/>
+                     </header>
                     <sheet>
 
 
@@ -28,7 +31,7 @@
                             <group>
                                 <field name="number"/>
 
-                                <field name="customer_name"/>
+                                <field name="customer_id"/>
 
                                 <field name="guest_room"/>
 

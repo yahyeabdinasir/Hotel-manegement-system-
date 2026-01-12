@@ -7,11 +7,18 @@ class HotelBooking(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     number = fields.Char(string="reference number", readonly=True)
-    customer_name = fields.Many2one('hotel.customer', tracking=True, string="customer name" , ondelete="restrict")
+    customer_id = fields.Many2one('hotel.customer', tracking=True, string="customer name" , ondelete="restrict")
     guest_room = fields.Many2one("hotel.room", string="room" , ondelete="cascade")
     check_in = fields.Date(string="checkin", default=fields.Date.context_today)
     checkout = fields.Date(string="checkout")
     total_days = fields.Integer(compute="_compute_total_days")
+    state = fields.Selection([
+        ('new','New'),
+        ('in_progress','In Progress'),
+        ('booked','Booked'),
+        ('done','Done'),
+        ('cancel','Cancel'),
+    ])
 
     @api.depends("check_in", 'checkout')
     def _compute_total_days(self):

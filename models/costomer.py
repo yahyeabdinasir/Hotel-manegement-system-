@@ -5,11 +5,10 @@ class HotelCustomer(models.Model):
     _name = 'hotel.customer'
     _description = 'hotel property'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _rec_name = "Full_name"
 
-    number = fields.Char(string="number")
+    number = fields.Char(string="number",readonly=True)
 
-    Full_name = fields.Char(string="name")
+    name = fields.Char(string="name",required=True)
     display_name = fields.Char(string="display name", compute="_display_name")
     is_guest = fields.Boolean(string="is guest")
     title = fields.Selection([
@@ -33,7 +32,13 @@ class HotelCustomer(models.Model):
     ])
     preferred_language = fields.Many2one('res.lang')
     nationality = fields.Char(string="nationality ")
-
+    state = fields.Selection([
+        ('new','New'),
+        ('in_progress','In Progress'),
+        ('booked','Booked'),
+        ('done','Done'),
+        ('cancel','Cancel'),
+    ], default='new')
     email = fields.Char(string="email")
     phone = fields.Char(string="phone")
     country_id = fields.Many2one('res.country', string="Country ")
@@ -41,7 +46,15 @@ class HotelCustomer(models.Model):
     @api.model
     def create(self, vals_list):
         vals_list["number"] = self.env["ir.sequence"].next_by_code('hotel.customer')
-        return super(HotelCustomer, self).create(vals_list)
+        record = super(HotelCustomer, self).create(vals_list)
+        self.env['res.partner'].create({
+            'name':record.name
+        })
+        self.env['hotel.booking'].create({
+            'customer_id':record.id,
+            'state':'in_progress'
+        })
+        return record
 
     def write(self, vals):
         for rec in self:
@@ -51,4 +64,4 @@ class HotelCustomer(models.Model):
 
     def _display_name(self):
         for rec in self:
-            rec.display_name = f" {rec.number} -  {rec.Full_name}"
+            rec.display_name = f" {rec.number} -  {rec.name}"
